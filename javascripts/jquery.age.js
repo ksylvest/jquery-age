@@ -107,7 +107,7 @@ Copyright 2013 Kevin Sylvestre
 
     Age.prototype.format = function(amount, unit) {
       var _ref;
-      return (_ref = this.settings.formats[amount === this.setting.singular ? 'singular' : 'plural']) != null ? _ref[unit] : void 0;
+      return (_ref = this.settings.formats[amount === this.settings.singular ? 'singular' : 'plural']) != null ? _ref[unit] : void 0;
     };
 
     Age.prototype.text = function() {

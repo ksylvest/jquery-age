@@ -85,7 +85,7 @@ class Age
     undefined
 
   format: (amount, unit) =>
-    @settings.formats[if amount is @setting.singular then 'singular' else 'plural']?[unit]
+    @settings.formats[if amount is @settings.singular then 'singular' else 'plural']?[unit]
 
   text: =>
     interval = (@date() - new Date)
