@@ -16,7 +16,7 @@ class Age
 
   @settings:
     singular: 1
-    interval: 10000
+    interval: 1000
     suffixes: 
       past: "ago"
       future: "until"
@@ -42,6 +42,11 @@ class Age
   constructor: ($el, settings = {}) ->
     @$el = $el
     @settings = $.extend {}, Age.settings, settings
+
+    @reformat()
+    setInterval @reformat, @settings.interval
+
+  reformat: =>
     @$el.html(@text())
 
   date: =>
@@ -53,13 +58,13 @@ class Age
     return @settings.suffixes.future if interval > 0
 
   formatting: (interval) =>
-    seconds: Math.round(Math.abs(interval))
-    minutes: Math.round(Math.abs(interval / (60)))
-    hours:   Math.round(Math.abs(interval / (60 * 60)))
-    days:    Math.round(Math.abs(interval / (60 * 60 * 24)))
-    weeks:   Math.round(Math.abs(interval / (60 * 60 * 24 * 7)))
-    months:  Math.round(Math.abs(interval / (60 * 60 * 24 * 30)))
-    years:   Math.round(Math.abs(interval / (60 * 60 * 24 * 365)))
+    seconds: Math.round(Math.abs(interval / (1000)))
+    minutes: Math.round(Math.abs(interval / (1000 * 60)))
+    hours:   Math.round(Math.abs(interval / (1000 * 60 * 60)))
+    days:    Math.round(Math.abs(interval / (1000 * 60 * 60 * 24)))
+    weeks:   Math.round(Math.abs(interval / (1000 * 60 * 60 * 24 * 7)))
+    months:  Math.round(Math.abs(interval / (1000 * 60 * 60 * 24 * 30)))
+    years:   Math.round(Math.abs(interval / (1000 * 60 * 60 * 24 * 365)))
 
   amount: (formatting) =>
     formatting.years or 
@@ -85,7 +90,7 @@ class Age
     @settings.formats[if amount is @settings.singular then 'singular' else 'plural']?[unit]
 
   text: =>
-    interval = (@date() - new Date()) / 1000
+    interval = (@date() - new Date)
     suffix = @suffix(interval)
     formatting = @formatting(interval)
     amount = @amount(formatting)

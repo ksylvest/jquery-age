@@ -1,62 +1,59 @@
 # jQuery Gridly
 
-Gridly is a jQuery plugin to enable dragging and dropping as well as resizing on a grid.
+Age is a jQuery plugin that formats and tracks dates and times as human readable text.
 
 ## Installation
 
-To install copy the *javascripts* and *stylesheets* directories into your project and add the following snippet to the header:
+To install copy the *javascripts* directories into your project and add the following snippet to the header:
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="javascript/jquery.gridly.js" type="text/javascript"></script>
-    <link href="stylesheets/jquery.gridly.css" rel="stylesheet" type="text/css" />
+    <script src="javascript/jquery.age.js" type="text/javascript"></script>
 
 ## Examples
 
-Setting up a gridly is easy. The following snippet is a good start:
+Setting up a date or time is easy. The following snippet is a good start:
 
-    <style>
-    .brick.small {
-      width: 140px;
-      height: 140px;
-    }
+    <time datetime="2010-01-01T12:00:00Z" class="age">January 1, 2010 12:00</time>
+    <time datetime="2020-01-01T12:00:00Z" class="age">January 1, 2020 12:00</time>
 
-    .brick.large {
-      width: 300px;
-      height: 300px;
-    }
-    </style>
-
-    <div class="gridly">
-      <div class="brick small"></div>
-      <div class="brick small"></div>
-      <div class="brick large"></div>
-      <div class="brick small"></div>
-      <div class="brick small"></div>
-      <div class="brick large"></div>
-    </div>
-
-    <script>
-      $('.gridly').gridly();
-      $('.gridly').gridly('draggable');
-      $('.gridly').gridly();
+    <script type="text/javascript">
+      $('.age').age();
     </script>
 
 ## Configuration
 
-Gridly uses a fairly standard pattern for handling grids and offers three configuration options for sizing: *base*, *gutter* and *columns*:
+Age supports a number of configuration settings for customizing the language and intervals:
 
-    $('.gridly').gridly({
-      base: 60, // px 
-      gutter: 20, // px
-      columns: 12,
-    });
+    $('.age').age({
+      interval: 10000,
+      suffixes: {
+        past: "ago",
+        future: "until",
+        },
+      formats: {
+        now: "now"
+        singular: {
+          seconds: "a second",
+          minutes: "a minute",
+          hours: "a hour",
+          days: "a day",
+          weeks: "a week",
+          months: "a month",
+          years: "a year",
+          },
+        plural: {
+          seconds: "{{amount}} seconds",
+          minutes: "{{amount}} minutes",
+          hours: "{{amount}} hours",
+          days: "{{amount}} days",
+          weeks: "{{amount}} weeks",
+          months: "{{amount}} months",
+          years: "{{amount}} years",
+          },
+        },
+      });
 
-When using dragging the handle (element that responds to drag events) can be changed as well:
-
-    $('.gridly').gridly({
-      draggable: { handle: '.move' }
-    });
+    );
 
 ## Copyright
 

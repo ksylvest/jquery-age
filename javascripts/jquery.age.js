@@ -24,7 +24,7 @@ Copyright 2013 Kevin Sylvestre
   Age = (function() {
     Age.settings = {
       singular: 1,
-      interval: 10000,
+      interval: 1000,
       suffixes: {
         past: "ago",
         future: "until"
@@ -63,10 +63,16 @@ Copyright 2013 Kevin Sylvestre
       this.formatting = __bind(this.formatting, this);
       this.suffix = __bind(this.suffix, this);
       this.date = __bind(this.date, this);
+      this.reformat = __bind(this.reformat, this);
       this.$el = $el;
       this.settings = $.extend({}, Age.settings, settings);
-      this.$el.html(this.text());
+      this.reformat();
+      setInterval(this.reformat, this.settings.interval);
     }
+
+    Age.prototype.reformat = function() {
+      return this.$el.html(this.text());
+    };
 
     Age.prototype.date = function() {
       var attribute;
@@ -85,13 +91,13 @@ Copyright 2013 Kevin Sylvestre
 
     Age.prototype.formatting = function(interval) {
       return {
-        seconds: Math.round(Math.abs(interval)),
-        minutes: Math.round(Math.abs(interval / 60.)),
-        hours: Math.round(Math.abs(interval / (60 * 60))),
-        days: Math.round(Math.abs(interval / (60 * 60 * 24))),
-        weeks: Math.round(Math.abs(interval / (60 * 60 * 24 * 7))),
-        months: Math.round(Math.abs(interval / (60 * 60 * 24 * 30))),
-        years: Math.round(Math.abs(interval / (60 * 60 * 24 * 365)))
+        seconds: Math.round(Math.abs(interval / 1000.)),
+        minutes: Math.round(Math.abs(interval / (1000 * 60))),
+        hours: Math.round(Math.abs(interval / (1000 * 60 * 60))),
+        days: Math.round(Math.abs(interval / (1000 * 60 * 60 * 24))),
+        weeks: Math.round(Math.abs(interval / (1000 * 60 * 60 * 24 * 7))),
+        months: Math.round(Math.abs(interval / (1000 * 60 * 60 * 24 * 30))),
+        years: Math.round(Math.abs(interval / (1000 * 60 * 60 * 24 * 365)))
       };
     };
 
@@ -110,7 +116,7 @@ Copyright 2013 Kevin Sylvestre
 
     Age.prototype.text = function() {
       var amount, format, formatting, interval, suffix, unit;
-      interval = (this.date() - new Date()) / 1000;
+      interval = this.date() - new Date;
       suffix = this.suffix(interval);
       formatting = this.formatting(interval);
       amount = this.amount(formatting);
