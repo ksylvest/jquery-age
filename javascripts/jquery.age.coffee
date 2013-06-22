@@ -9,8 +9,8 @@ $ = jQuery
 
 class Age
 
-  @singular: 1
   @settings:
+    singular: 1
     interval: 1000
     suffixes: 
       past: "ago"
@@ -52,14 +52,17 @@ class Age
     return @settings.suffixes.past if interval < 0
     return @settings.suffixes.future if interval > 0
 
+  adjust: (interval, scale) =>
+    Math.round(Math.abs(interval / scale))
+
   formatting: (interval) =>
-    seconds: Math.round(Math.abs(interval / (1000)))
-    minutes: Math.round(Math.abs(interval / (1000 * 60)))
-    hours:   Math.round(Math.abs(interval / (1000 * 60 * 60)))
-    days:    Math.round(Math.abs(interval / (1000 * 60 * 60 * 24)))
-    weeks:   Math.round(Math.abs(interval / (1000 * 60 * 60 * 24 * 7)))
-    months:  Math.round(Math.abs(interval / (1000 * 60 * 60 * 24 * 30)))
-    years:   Math.round(Math.abs(interval / (1000 * 60 * 60 * 24 * 365)))
+    seconds: @adjust(interval, 1000)
+    minutes: @adjust(interval, 1000 * 60)
+    hours:   @adjust(interval, 1000 * 60 * 60)
+    days:    @adjust(interval, 1000 * 60 * 60 * 24)
+    weeks:   @adjust(interval, 1000 * 60 * 60 * 24 * 7)
+    months:  @adjust(interval, 1000 * 60 * 60 * 24 * 30)
+    years:   @adjust(interval, 1000 * 60 * 60 * 24 * 30 * 365)
 
   amount: (formatting) =>
     formatting.years or 
@@ -82,7 +85,7 @@ class Age
     undefined
 
   format: (amount, unit) =>
-    @settings.formats[if amount is @singular then 'singular' else 'plural']?[unit]
+    @settings.formats[if amount is @setting.singular then 'singular' else 'plural']?[unit]
 
   text: =>
     interval = (@date() - new Date)

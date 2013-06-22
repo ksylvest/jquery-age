@@ -13,9 +13,8 @@ Copyright 2013 Kevin Sylvestre
   $ = jQuery;
 
   Age = (function() {
-    Age.singular = 1;
-
     Age.settings = {
+      singular: 1,
       interval: 1000,
       suffixes: {
         past: "ago",
@@ -53,6 +52,7 @@ Copyright 2013 Kevin Sylvestre
       this.unit = __bind(this.unit, this);
       this.amount = __bind(this.amount, this);
       this.formatting = __bind(this.formatting, this);
+      this.adjust = __bind(this.adjust, this);
       this.suffix = __bind(this.suffix, this);
       this.date = __bind(this.date, this);
       this.reformat = __bind(this.reformat, this);
@@ -81,15 +81,19 @@ Copyright 2013 Kevin Sylvestre
       }
     };
 
+    Age.prototype.adjust = function(interval, scale) {
+      return Math.round(Math.abs(interval / scale));
+    };
+
     Age.prototype.formatting = function(interval) {
       return {
-        seconds: Math.round(Math.abs(interval / 1000.)),
-        minutes: Math.round(Math.abs(interval / (1000 * 60))),
-        hours: Math.round(Math.abs(interval / (1000 * 60 * 60))),
-        days: Math.round(Math.abs(interval / (1000 * 60 * 60 * 24))),
-        weeks: Math.round(Math.abs(interval / (1000 * 60 * 60 * 24 * 7))),
-        months: Math.round(Math.abs(interval / (1000 * 60 * 60 * 24 * 30))),
-        years: Math.round(Math.abs(interval / (1000 * 60 * 60 * 24 * 365)))
+        seconds: this.adjust(interval, 1000),
+        minutes: this.adjust(interval, 1000 * 60),
+        hours: this.adjust(interval, 1000 * 60 * 60),
+        days: this.adjust(interval, 1000 * 60 * 60 * 24),
+        weeks: this.adjust(interval, 1000 * 60 * 60 * 24 * 7),
+        months: this.adjust(interval, 1000 * 60 * 60 * 24 * 30),
+        years: this.adjust(interval, 1000 * 60 * 60 * 24 * 30 * 365)
       };
     };
 
@@ -103,7 +107,7 @@ Copyright 2013 Kevin Sylvestre
 
     Age.prototype.format = function(amount, unit) {
       var _ref;
-      return (_ref = this.settings.formats[amount === this.singular ? 'singular' : 'plural']) != null ? _ref[unit] : void 0;
+      return (_ref = this.settings.formats[amount === this.setting.singular ? 'singular' : 'plural']) != null ? _ref[unit] : void 0;
     };
 
     Age.prototype.text = function() {
