@@ -1,4 +1,4 @@
-# jQuery Gridly
+# jQuery Age
 
 Age is a jQuery plugin that formats and tracks dates and times as human readable text.
 

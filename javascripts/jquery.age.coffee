@@ -1,5 +1,5 @@
 ###
-jQuery Gridly
+jQuery Age
 Copyright 2013 Kevin Sylvestre
 ###
 
@@ -9,8 +9,8 @@ $ = jQuery
 
 class Age
 
+  @singular: 1
   @settings:
-    singular: 1
     interval: 1000
     suffixes: 
       past: "ago"
@@ -82,7 +82,7 @@ class Age
     undefined
 
   format: (amount, unit) =>
-    @settings.formats[if amount is @settings.singular then 'singular' else 'plural']?[unit]
+    @settings.formats[if amount is @singular then 'singular' else 'plural']?[unit]
 
   text: =>
     interval = (@date() - new Date)
