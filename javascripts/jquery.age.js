@@ -7,19 +7,10 @@ Copyright 2013 Kevin Sylvestre
 
 (function() {
   "use strict";
-  var $, Age, Helper,
+  var $, Age,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   $ = jQuery;
-
-  Helper = (function() {
-    function Helper() {}
-
-    Helper.after = function() {};
-
-    return Helper;
-
-  })();
 
   Age = (function() {
     Age.settings = {

@@ -7,11 +7,6 @@ Copyright 2013 Kevin Sylvestre
 
 $ = jQuery
 
-class Helper
-  
-  @after: ->
-    
-
 class Age
 
   @settings:
