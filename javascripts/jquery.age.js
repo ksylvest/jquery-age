@@ -48,6 +48,7 @@ Copyright 2013 Kevin Sylvestre
         settings = {};
       }
       this.text = __bind(this.text, this);
+      this.interval = __bind(this.interval, this);
       this.format = __bind(this.format, this);
       this.unit = __bind(this.unit, this);
       this.amount = __bind(this.amount, this);
@@ -59,17 +60,21 @@ Copyright 2013 Kevin Sylvestre
       this.$el = $el;
       this.settings = $.extend({}, Age.settings, settings);
       this.reformat();
-      setInterval(this.reformat, this.settings.interval);
     }
 
     Age.prototype.reformat = function() {
-      return this.$el.html(this.text());
+      var interval;
+      interval = this.interval();
+      this.$el.html(this.text(interval));
+      interval = Math.abs(interval);
+      if (interval < this.settings.interval) {
+        interval = this.settings.interval;
+      }
+      return setTimeout(this.reformat, interval);
     };
 
     Age.prototype.date = function() {
-      var attribute;
-      attribute = this.$el.attr('datetime') || this.$el.attr('date') || this.$el.attr('time');
-      return new Date(attribute);
+      return new Date(this.$el.attr('datetime') || this.$el.attr('date') || this.$el.attr('time'));
     };
 
     Age.prototype.suffix = function(interval) {
@@ -93,7 +98,7 @@ Copyright 2013 Kevin Sylvestre
         days: this.adjust(interval, 1000 * 60 * 60 * 24),
         weeks: this.adjust(interval, 1000 * 60 * 60 * 24 * 7),
         months: this.adjust(interval, 1000 * 60 * 60 * 24 * 30),
-        years: this.adjust(interval, 1000 * 60 * 60 * 24 * 30 * 365)
+        years: this.adjust(interval, 1000 * 60 * 60 * 24 * 365)
       };
     };
 
@@ -110,9 +115,15 @@ Copyright 2013 Kevin Sylvestre
       return (_ref = this.settings.formats[amount === this.settings.singular ? 'singular' : 'plural']) != null ? _ref[unit] : void 0;
     };
 
-    Age.prototype.text = function() {
-      var amount, format, formatting, interval, suffix, unit;
-      interval = this.date() - new Date;
+    Age.prototype.interval = function() {
+      return this.date() - new Date;
+    };
+
+    Age.prototype.text = function(interval) {
+      var amount, format, formatting, suffix, unit;
+      if (interval == null) {
+        interval = this.interval();
+      }
       suffix = this.suffix(interval);
       formatting = this.formatting(interval);
       amount = this.amount(formatting);

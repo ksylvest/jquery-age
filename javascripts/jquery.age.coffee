@@ -39,14 +39,18 @@ class Age
     @settings = $.extend {}, Age.settings, settings
 
     @reformat()
-    setInterval @reformat, @settings.interval
 
   reformat: =>
-    @$el.html(@text())
+    interval = @interval()
+    @$el.html(@text(interval))
+
+    interval = Math.abs(interval)
+    interval = @settings.interval if interval < @settings.interval
+
+    setTimeout @reformat, interval
 
   date: =>
-    attribute = @$el.attr('datetime') or @$el.attr('date') or @$el.attr('time')
-    new Date(attribute)
+    new Date @$el.attr('datetime') or @$el.attr('date') or @$el.attr('time')
 
   suffix: (interval) =>
     return @settings.suffixes.past if interval < 0
@@ -62,7 +66,7 @@ class Age
     days:    @adjust(interval, 1000 * 60 * 60 * 24)
     weeks:   @adjust(interval, 1000 * 60 * 60 * 24 * 7)
     months:  @adjust(interval, 1000 * 60 * 60 * 24 * 30)
-    years:   @adjust(interval, 1000 * 60 * 60 * 24 * 30 * 365)
+    years:   @adjust(interval, 1000 * 60 * 60 * 24 * 365)
 
   amount: (formatting) =>
     formatting.years or 
@@ -87,8 +91,10 @@ class Age
   format: (amount, unit) =>
     @settings.formats[if amount is @settings.singular then 'singular' else 'plural']?[unit]
 
-  text: =>
-    interval = (@date() - new Date)
+  interval: =>
+    @date() - new Date
+
+  text: (interval = @interval()) =>
     suffix = @suffix(interval)
     formatting = @formatting(interval)
     amount = @amount(formatting)
