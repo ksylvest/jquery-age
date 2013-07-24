@@ -9,6 +9,11 @@ To install copy the *javascripts* directories into your project and add the foll
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
     <script src="javascript/jquery.age.js" type="text/javascript"></script>
 
+This plugin is also registered under http://bower.io/ to simplify integration. Try:
+
+    npm install -g bower
+    bower install gridly
+
 ## Examples
 
 Setting up a date or time is easy. The following snippet is a good start:
