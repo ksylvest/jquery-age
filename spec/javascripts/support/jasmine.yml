@@ -12,7 +12,7 @@
 #
 src_files:
     - "javascripts/jquery.js"
-    - "javascripts/jquery.age.js"
+    - "javascripts/jquery.*.js"
 
 # helpers
 #
