@@ -60,6 +60,10 @@ Age supports a number of configuration settings for customizing the language and
 
     );
 
+## Status
+
+[![Status](https://travis-ci.org/ksylvest/jquery-age.png)](https://travis-ci.org/ksylvest/jquery-age)
+
 ## Copyright
 
 Copyright (c) 2013 - 2013 Kevin Sylvestre. See LICENSE for details.
