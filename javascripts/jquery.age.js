@@ -21,6 +21,10 @@ Copyright 2013 Kevin Sylvestre
         past: "ago",
         future: "until"
       },
+      prefixes:{
+        past: "",
+        future: ""
+      },
       formats: {
         now: "now",
         singular: {
@@ -87,6 +91,15 @@ Copyright 2013 Kevin Sylvestre
       }
     };
 
+    Age.prototype.prefix = function(interval) {
+      if (interval < 0) {
+        return this.settings.prefixes.past;
+      }
+      if (interval > 0) {
+        return this.settings.prefixes.future;
+      }
+    };
+
     Age.prototype.adjust = function(interval, scale) {
       return Math.round(Math.abs(interval / scale));
     };
@@ -121,11 +134,12 @@ Copyright 2013 Kevin Sylvestre
     };
 
     Age.prototype.text = function(interval) {
-      var amount, format, formatting, suffix, unit;
+      var amount, format, formatting, suffix, unit, prefix;
       if (interval == null) {
         interval = this.interval();
       }
       suffix = this.suffix(interval);
+      prefix = this.prefix(interval);
       formatting = this.formatting(interval);
       amount = this.amount(formatting);
       unit = this.unit(formatting);
@@ -133,7 +147,7 @@ Copyright 2013 Kevin Sylvestre
       if (!format) {
         return this.settings.formats.now;
       }
-      return "" + (format.replace('{{unit}}', unit).replace('{{amount}}', amount)) + " " + suffix;
+      return prefix + "" + (format.replace('{{unit}}', unit).replace('{{amount}}', amount)) + " " + suffix;
     };
 
     return Age;
