@@ -2,7 +2,7 @@
 /*
 jQuery Age
 Copyright 2013 Kevin Sylvestre
-1.1.3
+1.1.4
 */
 
 
@@ -21,7 +21,7 @@ Copyright 2013 Kevin Sylvestre
         past: "ago",
         future: "until"
       },
-      prefixes:{
+      prefixes: {
         past: "",
         future: ""
       },
@@ -59,8 +59,8 @@ Copyright 2013 Kevin Sylvestre
       this.amount = __bind(this.amount, this);
       this.formatting = __bind(this.formatting, this);
       this.adjust = __bind(this.adjust, this);
-      this.suffix = __bind(this.suffix, this);
       this.prefix = __bind(this.prefix, this);
+      this.suffix = __bind(this.suffix, this);
       this.date = __bind(this.date, this);
       this.reformat = __bind(this.reformat, this);
       this.$el = $el;
@@ -135,7 +135,7 @@ Copyright 2013 Kevin Sylvestre
     };
 
     Age.prototype.text = function(interval) {
-      var amount, format, formatting, suffix, unit, prefix;
+      var amount, format, formatting, prefix, suffix, unit;
       if (interval == null) {
         interval = this.interval();
       }
@@ -148,7 +148,7 @@ Copyright 2013 Kevin Sylvestre
       if (!format) {
         return this.settings.formats.now;
       }
-      return prefix + "" + (format.replace('{{unit}}', unit).replace('{{amount}}', amount)) + " " + suffix;
+      return "" + prefix + " " + (format.replace('{{unit}}', unit).replace('{{amount}}', amount)) + " " + suffix;
     };
 
     return Age;

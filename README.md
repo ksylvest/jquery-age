@@ -60,6 +60,10 @@ Age supports a number of configuration settings for customizing the language and
 
     );
 
+## Contributors
+
+- Carlos Manuel Escalona Villeda
+
 ## Status
 
 [![Status](https://travis-ci.org/ksylvest/jquery-age.png)](https://travis-ci.org/ksylvest/jquery-age)
