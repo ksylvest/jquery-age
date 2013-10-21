@@ -60,6 +60,7 @@ Copyright 2013 Kevin Sylvestre
       this.formatting = __bind(this.formatting, this);
       this.adjust = __bind(this.adjust, this);
       this.suffix = __bind(this.suffix, this);
+      this.prefix = __bind(this.prefix, this);
       this.date = __bind(this.date, this);
       this.reformat = __bind(this.reformat, this);
       this.$el = $el;
