@@ -16,6 +16,9 @@ class Age
     suffixes: 
       past: "ago"
       future: "until"
+    prefixes:
+        past: ""
+        future: ""
     formats:
       now: "now"
       singular:
@@ -57,6 +60,10 @@ class Age
     return @settings.suffixes.past if interval < 0
     return @settings.suffixes.future if interval > 0
 
+  prefix: (interval) =>
+    return @settings.prefixes.past if interval < 0
+    return @settings.prefixes.future if interval > 0
+
   adjust: (interval, scale) =>
     Math.round(Math.abs(interval / scale))
 
@@ -97,6 +104,7 @@ class Age
 
   text: (interval = @interval()) =>
     suffix = @suffix(interval)
+    prefix = @prefix(interval)
     formatting = @formatting(interval)
     amount = @amount(formatting)
     unit = @unit(formatting)
@@ -104,7 +112,7 @@ class Age
     format = @format(amount, unit)
 
     return @settings.formats.now unless format
-    return "#{format.replace('{{unit}}', unit).replace('{{amount}}', amount)} #{suffix}"
+    return "#{prefix} #{format.replace('{{unit}}', unit).replace('{{amount}}', amount)} #{suffix}"
 
 $.fn.extend
   age: (options = {}) ->

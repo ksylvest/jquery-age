@@ -21,6 +21,10 @@ Copyright 2013 Kevin Sylvestre
         past: "ago",
         future: "until"
       },
+      prefixes:{
+        past: "",
+        future: ""
+      },
       formats: {
         now: "now",
         singular: {
@@ -56,6 +60,7 @@ Copyright 2013 Kevin Sylvestre
       this.formatting = __bind(this.formatting, this);
       this.adjust = __bind(this.adjust, this);
       this.suffix = __bind(this.suffix, this);
+      this.prefix = __bind(this.prefix, this);
       this.date = __bind(this.date, this);
       this.reformat = __bind(this.reformat, this);
       this.$el = $el;
@@ -84,6 +89,15 @@ Copyright 2013 Kevin Sylvestre
       }
       if (interval > 0) {
         return this.settings.suffixes.future;
+      }
+    };
+
+    Age.prototype.prefix = function(interval) {
+      if (interval < 0) {
+        return this.settings.prefixes.past;
+      }
+      if (interval > 0) {
+        return this.settings.prefixes.future;
       }
     };
 
@@ -121,11 +135,12 @@ Copyright 2013 Kevin Sylvestre
     };
 
     Age.prototype.text = function(interval) {
-      var amount, format, formatting, suffix, unit;
+      var amount, format, formatting, suffix, unit, prefix;
       if (interval == null) {
         interval = this.interval();
       }
       suffix = this.suffix(interval);
+      prefix = this.prefix(interval);
       formatting = this.formatting(interval);
       amount = this.amount(formatting);
       unit = this.unit(formatting);
@@ -133,7 +148,7 @@ Copyright 2013 Kevin Sylvestre
       if (!format) {
         return this.settings.formats.now;
       }
-      return "" + (format.replace('{{unit}}', unit).replace('{{amount}}', amount)) + " " + suffix;
+      return prefix + "" + (format.replace('{{unit}}', unit).replace('{{amount}}', amount)) + " " + suffix;
     };
 
     return Age;
