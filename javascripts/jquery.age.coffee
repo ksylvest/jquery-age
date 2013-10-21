@@ -112,7 +112,7 @@ class Age
     format = @format(amount, unit)
 
     return @settings.formats.now unless format
-    return "{prefix} #{format.replace('{{unit}}', unit).replace('{{amount}}', amount)} #{suffix}"
+    return "#{prefix} #{format.replace('{{unit}}', unit).replace('{{amount}}', amount)} #{suffix}"
 
 $.fn.extend
   age: (options = {}) ->
