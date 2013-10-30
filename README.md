@@ -40,7 +40,7 @@ Age supports a number of configuration settings for customizing the language and
         singular: {
           seconds: "a second",
           minutes: "a minute",
-          hours: "a hour",
+          hours: "an hour",
           days: "a day",
           weeks: "a week",
           months: "a month",

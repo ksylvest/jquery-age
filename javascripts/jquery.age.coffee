@@ -1,7 +1,7 @@
 ###
 jQuery Age
 Copyright 2013 Kevin Sylvestre
-1.1.4
+1.1.5
 ###
 
 "use strict"
@@ -24,7 +24,7 @@ class Age
       singular:
         seconds: "a second"
         minutes: "a minute"
-        hours: "a hour"
+        hours: "an hour"
         days: "a day"
         weeks: "a week"
         months: "a month"
