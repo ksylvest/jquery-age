@@ -1,7 +1,7 @@
 ###
 jQuery Age
 Copyright 2013 Kevin Sylvestre
-1.1.5
+1.1.6
 ###
 
 "use strict"
@@ -48,10 +48,7 @@ class Age
     interval = @interval()
     @$el.html(@text(interval))
 
-    interval = Math.abs(interval)
-    interval = @settings.interval if interval < @settings.interval
-
-    setTimeout @reformat, interval
+    setTimeout @reformat, @settings.interval
 
   date: =>
     new Date @$el.attr('datetime') or @$el.attr('date') or @$el.attr('time')

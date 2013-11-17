@@ -2,7 +2,7 @@
 /*
 jQuery Age
 Copyright 2013 Kevin Sylvestre
-1.1.5
+1.1.6
 */
 
 
@@ -72,11 +72,7 @@ Copyright 2013 Kevin Sylvestre
       var interval;
       interval = this.interval();
       this.$el.html(this.text(interval));
-      interval = Math.abs(interval);
-      if (interval < this.settings.interval) {
-        interval = this.settings.interval;
-      }
-      return setTimeout(this.reformat, interval);
+      return setTimeout(this.reformat, this.settings.interval);
     };
 
     Age.prototype.date = function() {
