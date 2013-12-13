@@ -14,6 +14,20 @@ This plugin is also registered under http://bower.io/ to simplify integration. T
     npm install -g bower
     bower install gridly
 
+In addition this plugin is registered as a https://rails-assets.org/ to simplify integration with Ruby on Rails applications:
+
+**Gemfile**
+
+    + source 'https://rails-assets.org'
+    ...
+    + gem 'rails-assets-age'
+
+**application.js**
+
+    //= require jquery
+    ...
+    //= require age
+
 ## Examples
 
 Setting up a date or time is easy. The following snippet is a good start:
