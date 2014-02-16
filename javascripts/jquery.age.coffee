@@ -1,7 +1,7 @@
 ###
 jQuery Age
 Copyright 2013 Kevin Sylvestre
-1.1.7
+1.1.8
 ###
 
 "use strict"
