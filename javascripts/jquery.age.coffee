@@ -62,7 +62,7 @@ class Age
     return @settings.prefixes.future if interval > 0
 
   adjust: (interval, scale) =>
-    Math.round(Math.abs(interval / scale))
+    Math.floor(Math.abs(interval / scale))
 
   formatting: (interval) =>
     seconds: @adjust(interval, 1000)
