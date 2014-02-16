@@ -98,7 +98,7 @@ Copyright 2013 Kevin Sylvestre
     };
 
     Age.prototype.adjust = function(interval, scale) {
-      return Math.round(Math.abs(interval / scale));
+      return Math.floor(Math.abs(interval / scale));
     };
 
     Age.prototype.formatting = function(interval) {
