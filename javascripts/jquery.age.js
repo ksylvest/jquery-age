@@ -2,7 +2,7 @@
 /*
 jQuery Age
 Copyright 2013 Kevin Sylvestre
-1.1.9
+1.2.0
 */
 
 
@@ -156,7 +156,7 @@ Copyright 2013 Kevin Sylvestre
       if (!format) {
         return this.settings.formats.now;
       }
-      return "" + prefix + " " + (format.replace('{{unit}}', unit).replace('{{amount}}', amount)) + " " + suffix;
+      return ("" + prefix + " " + (format.replace('{{unit}}', unit).replace('{{amount}}', amount)) + " " + suffix).trim();
     };
 
     return Age;

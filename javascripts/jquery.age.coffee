@@ -1,7 +1,7 @@
 ###
 jQuery Age
 Copyright 2013 Kevin Sylvestre
-1.1.9
+1.2.0
 ###
 
 "use strict"
@@ -118,7 +118,7 @@ class Age
     format = @format(amount, unit)
 
     return @settings.formats.now unless format
-    return "#{prefix} #{format.replace('{{unit}}', unit).replace('{{amount}}', amount)} #{suffix}"
+    return "#{prefix} #{format.replace('{{unit}}', unit).replace('{{amount}}', amount)} #{suffix}".trim()
 
 $.fn.extend
   age: (options = {}) ->
