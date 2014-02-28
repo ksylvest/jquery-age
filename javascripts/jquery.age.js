@@ -2,7 +2,7 @@
 /*
 jQuery Age
 Copyright 2013 Kevin Sylvestre
-1.1.8
+1.1.9
 */
 
 
@@ -44,6 +44,15 @@ Copyright 2013 Kevin Sylvestre
           weeks: "{{amount}} weeks",
           months: "{{amount}} months",
           years: "{{amount}} years"
+        },
+        tiny: {
+          seconds: "{{amount}}s",
+          minutes: "{{amount}}m",
+          hours: "{{amount}}h",
+          days: "{{amount}}d",
+          weeks: "{{amount}}w",
+          months: "{{amount}}m",
+          years: "{{amount}}y"
         }
       }
     };
@@ -122,8 +131,11 @@ Copyright 2013 Kevin Sylvestre
     };
 
     Age.prototype.format = function(amount, unit) {
-      var _ref;
-      return (_ref = this.settings.formats[amount === this.settings.singular ? 'singular' : 'plural']) != null ? _ref[unit] : void 0;
+      var _ref, _ref1;
+      if (this.settings.style != null) {
+        return (_ref = this.settings.formats[this.settings.style]) != null ? _ref[unit] : void 0;
+      }
+      return (_ref1 = this.settings.formats[amount === this.settings.singular ? 'singular' : 'plural']) != null ? _ref1[unit] : void 0;
     };
 
     Age.prototype.interval = function() {

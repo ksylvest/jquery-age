@@ -1,7 +1,7 @@
 ###
 jQuery Age
 Copyright 2013 Kevin Sylvestre
-1.1.8
+1.1.9
 ###
 
 "use strict"
@@ -37,6 +37,14 @@ class Age
         weeks: "{{amount}} weeks"
         months: "{{amount}} months"
         years: "{{amount}} years"
+      tiny:
+        seconds: "{{amount}}s"
+        minutes: "{{amount}}m"
+        hours: "{{amount}}h"
+        days: "{{amount}}d"
+        weeks: "{{amount}}w"
+        months: "{{amount}}m"
+        years: "{{amount}}y"
 
   constructor: ($el, settings = {}) ->
     @$el = $el
@@ -94,6 +102,7 @@ class Age
     undefined
 
   format: (amount, unit) =>
+    return @settings.formats[@settings.style]?[unit] if @settings.style?
     @settings.formats[if amount is @settings.singular then 'singular' else 'plural']?[unit]
 
   interval: =>

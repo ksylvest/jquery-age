@@ -15,7 +15,7 @@ GEM
     neat (1.5.0)
       bourbon (>= 2.1)
       sass (>= 3.2)
-    phantomjs (1.9.2.1)
+    phantomjs (1.9.7.0)
     rack (1.5.2)
     rake (10.1.1)
     sass (3.2.14)

@@ -2,7 +2,10 @@
 (function() {
   $(function() {
     $('.age.now').attr('datetime', new Date);
-    return $('.age').age();
+    $('.age.default').age();
+    return $('.age.tiny').age({
+      style: 'tiny'
+    });
   });
 
 }).call(this);

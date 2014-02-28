@@ -31,13 +31,22 @@
       %section.example
         %p 
           Example #1:
-          %time.age.now Now
-        %p 
-          Example #1: 
-          %time.age{ datetime: "2010-01-01T12:00:00Z" } January 1, 2010 12:00
+          %time.default.age.now Now
         %p 
           Example #2: 
-          %time.age{ datetime: "2020-01-01T12:00:00Z" } January 1, 2020 12:00
+          %time.default.age{ datetime: "2010-01-01T12:00:00Z" } January 1, 2010 12:00
+        %p 
+          Example #3: 
+          %time.default.age{ datetime: "2020-01-01T12:00:00Z" } January 1, 2020 12:00
+        %p 
+          Example #4:
+          %time.tiny.age.now Now
+        %p 
+          Example #5: 
+          %time.tiny.age{ datetime: "2010-01-01T12:00:00Z" } January 1, 2010 12:00
+        %p 
+          Example #6: 
+          %time.tiny.age{ datetime: "2020-01-01T12:00:00Z" } January 1, 2020 12:00
       %h2 Installation
       %p To install download one of these packages and include the jquery.age.js file in your head with the following:
       %section.formats
