@@ -2,7 +2,7 @@
 /*
 jQuery Age
 Copyright 2013 Kevin Sylvestre
-1.2.0
+1.2.1
 */
 
 
@@ -146,6 +146,12 @@ Copyright 2013 Kevin Sylvestre
       var amount, format, formatting, prefix, suffix, unit;
       if (interval == null) {
         interval = this.interval();
+      }
+      if (interval > 0 && (this.settings.pending != null)) {
+        return this.settings.pending;
+      }
+      if (interval < 0 && (this.settings.expired != null)) {
+        return this.settings.expired;
       }
       suffix = this.suffix(interval);
       prefix = this.prefix(interval);

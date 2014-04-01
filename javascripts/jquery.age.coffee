@@ -1,7 +1,7 @@
 ###
 jQuery Age
 Copyright 2013 Kevin Sylvestre
-1.2.0
+1.2.1
 ###
 
 "use strict"
@@ -17,8 +17,8 @@ class Age
       past: "ago"
       future: "until"
     prefixes:
-        past: ""
-        future: ""
+      past: ""
+      future: ""
     formats:
       now: "now"
       singular:
@@ -109,6 +109,9 @@ class Age
     @date() - new Date
 
   text: (interval = @interval()) =>
+    return @settings.pending if interval > 0 and @settings.pending?
+    return @settings.expired if interval < 0 and @settings.expired?
+
     suffix = @suffix(interval)
     prefix = @prefix(interval)
     formatting = @formatting(interval)

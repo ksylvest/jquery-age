@@ -3,8 +3,14 @@
   $(function() {
     $('.age.now').attr('datetime', new Date);
     $('.age.default').age();
-    return $('.age.tiny').age({
+    $('.age.tiny').age({
       style: 'tiny'
+    });
+    $('.age.expired').age({
+      expired: 'expired'
+    });
+    return $('.age.pending').age({
+      pending: 'pending'
     });
   });
 
