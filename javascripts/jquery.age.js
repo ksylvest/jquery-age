@@ -2,7 +2,7 @@
 /*
 jQuery Age
 Copyright 2013 Kevin Sylvestre
-1.2.2
+1.2.3
 */
 
 
@@ -25,6 +25,7 @@ Copyright 2013 Kevin Sylvestre
         past: "",
         future: ""
       },
+      units: ["years", "months", "weeks", "days", "hours", "minutes", "seconds"],
       formats: {
         now: "now",
         singular: {
@@ -123,11 +124,19 @@ Copyright 2013 Kevin Sylvestre
     };
 
     Age.prototype.amount = function(formatting) {
-      return formatting.years || formatting.months || formatting.weeks || formatting.days || formatting.hours || formatting.minutes || formatting.seconds || 0;
+      return formatting[this.unit(formatting)] || 0;
     };
 
     Age.prototype.unit = function(formatting) {
-      return (formatting.years && "years") || (formatting.months && "months") || (formatting.weeks && "weeks") || (formatting.days && "days") || (formatting.hours && "hours") || (formatting.minutes && "minutes") || (formatting.seconds && "seconds") || void 0;
+      var unit, _i, _len, _ref;
+      _ref = this.settings.units;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        unit = _ref[_i];
+        if (formatting[unit] > 0) {
+          return unit;
+        }
+      }
+      return void 0;
     };
 
     Age.prototype.format = function(amount, unit) {

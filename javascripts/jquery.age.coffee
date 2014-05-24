@@ -1,7 +1,7 @@
 ###
 jQuery Age
 Copyright 2013 Kevin Sylvestre
-1.2.2
+1.2.3
 ###
 
 "use strict"
@@ -19,6 +19,7 @@ class Age
     prefixes:
       past: ""
       future: ""
+    units: ["years", "months", "weeks", "days", "hours", "minutes", "seconds"]
     formats:
       now: "now"
       singular:
@@ -82,24 +83,12 @@ class Age
     years:   @adjust(interval, 1000 * 60 * 60 * 24 * 365)
 
   amount: (formatting) =>
-    formatting.years or 
-    formatting.months or 
-    formatting.weeks or 
-    formatting.days or 
-    formatting.hours or 
-    formatting.minutes or 
-    formatting.seconds or
-    0
+    return formatting[@unit(formatting)] || 0
 
   unit: (formatting) =>
-    (formatting.years and "years") or
-    (formatting.months and "months") or
-    (formatting.weeks and "weeks") or
-    (formatting.days and "days") or
-    (formatting.hours and "hours") or
-    (formatting.minutes and "minutes") or
-    (formatting.seconds and "seconds") or 
-    undefined
+    for unit in @settings.units
+      return unit if formatting[unit] > 0
+    return undefined
 
   format: (amount, unit) =>
     return @settings.formats[@settings.style]?[unit] if @settings.style?

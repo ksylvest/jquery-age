@@ -71,8 +71,11 @@ Age supports a number of configuration settings for customizing the language and
           },
         },
       });
-
     );
+
+Age also supports passing in a whitelist of allowed units (i.e. now showing units in weeks or months ever):
+
+    $('.age').age({ units: ["days", "hours", "minutes"] });
 
 ## Contributors
 

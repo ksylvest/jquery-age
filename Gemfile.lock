@@ -1,15 +1,15 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    bourbon (4.0.1)
+    bourbon (4.0.2)
       sass (~> 3.3)
       thor
     haml (4.0.5)
       tilt
-    jasmine (2.0.1)
+    jasmine (2.0.2)
       jasmine-core (~> 2.0.0)
       phantomjs
-      rack (>= 1.2.2)
+      rack (>= 1.2.1)
       rake
     jasmine-core (2.0.0)
     neat (1.6.0)
