@@ -84,7 +84,6 @@ Age also supports passing in a whitelist of allowed units (i.e. not showing unit
 ## Status
 
 [![Status](https://img.shields.io/travis/ksylvest/jquery-age.svg)](https://travis-ci.org/ksylvest/jquery-age)
-[![Status](https://img.shields.io/codeclimate/github/ksylvest/jquery-age.svg)](https://codeclimate.com/github/ksylvest/jquery-age)
 
 ## Copyright
 
