@@ -1,21 +1,32 @@
 {
   "name": "age",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "main": [ "./javascripts/jquery.age.js" ],
   "ignore": 
   [
+    "README*",
+    "LICENSE*",
     "**/*.sass",
     "**/*.coffee",
     "**/sample.*",
-    "**/rainbow.*",
+    "**/rainbow.js",
+    "**/rainbow.css",
+    "**/jquery.js",
+    "**/jquery.css",
+    "samples",
+    "spec",
     "bourbon",
     "neat",
     "packages",
     "images",
-    "Cakefile",
-    "Gemfile",
-    "Gemfile.*",
-    "index.*"
+    "Cakefile*",
+    "Rakefile*",
+    "Gemfile*",
+    ".git*",
+    ".travis*",
+    "*bower.json",
+    "*jquery.json",
+    "index*"
   ],
   "dependencies": { "jquery": "latest" }
 }
