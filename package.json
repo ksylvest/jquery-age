@@ -1,0 +1,16 @@
+{
+  "name": "jquery.age",
+  "version": "1.2.4",
+  "description": "Age is a jQuery plugin that formats and tracks dates and times as human readable text.",
+  "main": "./javascripts/jquery.age.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksylvest/jquery-age.git"
+  },
+  "author": "Kevin Sylvestre",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ksylvest/jquery-age/issues"
+  },
+  "homepage": "https://github.com/ksylvest/jquery-age#readme"
+}
